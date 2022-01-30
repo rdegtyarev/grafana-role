@@ -1,0 +1,15 @@
+---
+- name: "Download Grafana's deb"
+  get_url:
+    url: "https://dl.grafana.com/enterprise/release/grafana-enterprise_{{ grafana_version }}_amd64.deb"
+    dest: "files/grafana-enterprise_{{ grafana_version }}_amd64.deb"
+  register: download_grafana
+  delegate_to: localhost
+  until: download_grafana is succeeded
+  when: grafana_install_type == 'remote'
+- name: Copy Grafana to managed node
+  copy:
+    src: "files/grafana-enterprise_{{ grafana_version }}_amd64.deb"
+    mode: 0755
+    dest: "/tmp/grafana-enterprise_{{ grafana_version }}_amd64.deb"
+

@@ -1,0 +1,4 @@
+---
+# defaults file for grafana-role
+grafana_version: "8.3.4"
+grafana_install_type: remote

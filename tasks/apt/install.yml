@@ -1,0 +1,7 @@
+---
+- name: Install Grafana
+  become: true
+  apt:
+    deb: "/tmp/grafana-enterprise_{{ grafana_version }}_amd64.deb"
+    state: present
+  notify: restart Grafana
